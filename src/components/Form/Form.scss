@@ -9,6 +9,9 @@
     border-radius: 7px;
     border: 1px solid $secondary;
     background-color: $primary;
+    @include mobile {
+        padding: 17.5px;
+    }
     input {
         margin: 0 35px;
         padding: 17.5px;
@@ -16,6 +19,9 @@
         height: 70px;
         border-radius: 7px;
         border: 1px solid $secondary;
+        @include mobile {
+            margin: 0 17.5px;
+        }
         &:hover, &:focus {
             border-color: $accent;
         }
