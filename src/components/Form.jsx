@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import useSound from 'use-sound';
 import { FaVolumeUp, FaVolumeOff, FaPlus } from 'react-icons/fa';
-import TodosContext from '../../contexts/TodosContext';
-import lobbyMusic from '../../assets/lobbymusic.mp3';
-import './Form.scss';
+import { createTodo } from '../redux/todosSlice';
+import lobbyMusic from '../assets/lobbymusic.mp3';
 
 const Form = () => {
+    const dispatch = useDispatch();
     const [title, setTitle] = useState('');
-    const { todos, setTodos } = useContext(TodosContext);
     const [music, setMusic] = useState(false);
     const [play, { stop }] = useSound(lobbyMusic);
     const handleToggleMusic = () => {
@@ -24,16 +24,12 @@ const Form = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        setTodos([{
-            id: Date.now(),
-            finished: false,
-            title
-        }, ...todos]);
+        dispatch(createTodo(title));
         setTitle('');
     };
     return (
-        <div className="form">
-            <button onClick={handleToggleMusic}>
+        <form className="form" onSubmit={handleSubmit}>
+            <button type="button" onClick={handleToggleMusic}>
                 {(music) ? (
                     <FaVolumeUp className="icon" />    
                 ) : (
@@ -48,10 +44,10 @@ const Form = () => {
                 value={title}
                 onChange={handleChangeTitle}
             />
-            <button type="submit" onClick={handleSubmit}>
+            <button type="submit">
                 <FaPlus className="icon" />
             </button>
-        </div>
+        </form>
     );
 };
 

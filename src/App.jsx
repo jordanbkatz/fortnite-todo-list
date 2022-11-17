@@ -1,9 +1,8 @@
 import React from 'react';
-import Background from '../Background';
-import Header from '../Header';
-import Form from '../Form';
-import Todos from '../Todos';
-import './App.scss';
+import Background from './components/Background';
+import Header from './components/Header';
+import Form from './components/Form';
+import Todos from './components/Todos';
 
 const App = () => {
     return (
