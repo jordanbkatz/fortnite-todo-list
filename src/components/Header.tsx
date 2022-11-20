@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Header = () => {
+function Header() {
     return (
         <div className="header">
             Fortnite Todo List

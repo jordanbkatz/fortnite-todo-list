@@ -1,7 +1,6 @@
-import React from 'react';
-import image from '../assets/background.jpeg';
+const image = require('../assets/background.jpeg');
 
-const Background = () => {
+function Background() {
     return (
         <img src={image} alt="background" className="background" />
     );
