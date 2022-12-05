@@ -1,13 +1,15 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import useSound from 'use-sound';
 import { FaVolumeUp, FaVolumeOff, FaPlus } from 'react-icons/fa';
-import TodoContext from '../contexts/TodoContext';
-const lobbyMusic = require('../assets/lobbymusic.mp3');
+import lobbyMusic from '../assets/lobbymusic.mp3';
 
-function Form() {
-    const { todos, setTodos } = useContext(TodoContext);
-    const [title, setTitle] = useState('');
-    const [music, setMusic] = useState(false);
+interface IFormProps {
+    addTodo: (name: string) => void;
+}
+
+const Form: React.FC<IFormProps> = ({ addTodo }) => {
+    const [name, setName] = useState<string>('');
+    const [music, setMusic] = useState<boolean>(false);
     const [play, { stop }] = useSound(lobbyMusic);
     const handleToggleMusic = () => {
         if (!music) {
@@ -18,17 +20,13 @@ function Form() {
         }
         setMusic(!music);
     };
-    const handleChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
     };
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setTodos([{
-            id: Date.now(),
-            finished: false,
-            title
-        }, ...todos]);
-        setTitle('');
+        addTodo(name);
+        setName('');
     };
     return (
         <form className="form" onSubmit={handleSubmit}>
@@ -44,8 +42,8 @@ function Form() {
                 type="text"
                 maxLength={50}
                 placeholder="enter todo"
-                value={title}
-                onChange={handleChangeTitle}
+                value={name}
+                onChange={handleChangeName}
             />
             <button type="submit">
                 <FaPlus className="icon" />

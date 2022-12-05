@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { TodoProvider } from './contexts/TodoContext';
 import App from './App';
-import './styles/style.scss';
+import './styles/main.scss';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 root.render(
     <React.StrictMode>
-        <TodoProvider>
-            <App />
-        </TodoProvider>
+        <App />
     </React.StrictMode>
 );

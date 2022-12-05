@@ -1,6 +1,6 @@
-const image = require('../assets/background.jpeg');
+import image from '../assets/background.jpeg';
 
-function Background() {
+const Background: React.FC = () => {
     return (
         <img src={image} alt="background" className="background" />
     );

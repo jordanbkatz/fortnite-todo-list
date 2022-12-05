@@ -1,18 +1,16 @@
-import Background from './components/Background';
-import Header from './components/Header';
-import Form from './components/Form';
-import Todos from './components/Todos';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
 
-function App() {
+const App: React.FC = () => {
     return (
-        <div className="app">
-            <Background />
-            <div className="content">
-                <Header />
-                <Form />
-                <Todos />
-            </div>
-        </div>
+        <Router>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                </Routes>
+            </Layout>
+        </Router>
     );
 };
 
